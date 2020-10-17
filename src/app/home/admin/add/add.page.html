@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tambah Produk</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="medium">
+  <form [formGroup]="newProduct">
+    <ion-item>
+      <ion-label position="floating">URL Foto</ion-label>
+      <ion-input type="text" formControlName="foto1"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Jenis Produk</ion-label>
+      <ion-select [(ngModel)]="type" formControlName="type" interface="modal">
+        <ion-select-option value="CPU">CPU</ion-select-option>
+        <ion-select-option value="RAM">RAM</ion-select-option>
+        <ion-select-option value="Motherboard">Motherboard</ion-select-option>
+        <ion-select-option value="GPU">GPU</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Merk Produk</ion-label>
+      <ion-input  type="text" formControlName="nama"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Model Produk</ion-label>
+      <ion-input  type="text" formControlName="model"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Harga Produk</ion-label>
+      <ion-input type="number" formControlName="harga"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Stok Produk</ion-label>
+      <ion-input  type="number" formControlName="stok"></ion-input>
+    </ion-item>
+    
+ 
+    <ion-item *ngIf="type === 'CPU'">
+      <ion-label position="floating">Base Clock (Ghz)</ion-label>
+      <ion-input  type="number" formControlName="baseClock" required></ion-input>
+    </ion-item>
+    <ion-item *ngIf="type === 'CPU'">
+      <ion-label position="floating">Boost Clock (Ghz)</ion-label>
+      <ion-input  type="number" formControlName="boostClock" required></ion-input>
+    </ion-item>
+    <ion-item *ngIf="type === 'CPU'">
+      <ion-label position="floating">Core</ion-label>
+      <ion-input  type="number" formControlName="core" required></ion-input>
+    </ion-item>
+    <ion-item *ngIf="type === 'CPU'">
+      <ion-label position="floating">Thread</ion-label>
+      <ion-input  type="number" formControlName="thread" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="type === 'RAM'">
+      <ion-label position="floating">Speed (Mhz)</ion-label>
+      <ion-input  type="number" formControlName="speed" required></ion-input>
+    </ion-item>
+    <ion-item *ngIf="type === 'RAM'">
+      <ion-label position="floating">Ukuran (GB)</ion-label>
+      <ion-input  type="number" formControlName="ukuran" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="type === 'Motherboard'">
+      <ion-label position="floating">Chipset</ion-label>
+      <ion-input  type="text" formControlName="chipset" required></ion-input>
+    </ion-item>
+    <ion-item *ngIf="type === 'Motherboard'">
+      <ion-label position="floating">Processor</ion-label>
+      <ion-input  type="text" formControlName="processor" required></ion-input>
+    </ion-item>
+
+    <ion-button  [disabled]="newProduct.invalid" expand="full"  (click)=confirmAdd() color="success">SUBMIT</ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="sideMenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end" [routerLink]="['./','add']" >
+      <ion-button>
+        <ion-icon name="add" slot="end"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Admin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="medium">
+  <ion-card *ngFor="let product of products" color="secondary" style="margin-top: 20px; margin-left: 20px; margin-right: 20px;">
+    <ion-card-content>
+     <ion-list>
+       <ion-item-sliding #slidingItem>
+          <ion-item-options side="start">
+            <ion-item-option [routerLink]="['./','edit', product.id]"  (click)="edit(product, slidingItem)">
+              <ion-icon name="create" slot="icon-only"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+          
+          <ion-item-options side="end">
+            <ion-item-option color="danger" (click)="confirmDelete(product, slidingItem)">
+              <ion-icon name="trash" slot="icon-only"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+
+          <ion-item lines="none">
+            <ion-thumbnail  slot="start" style="margin-left: 20px;">
+              <ion-img [src]="product.imgUrl[0]"></ion-img>
+            </ion-thumbnail >
+            <ion-label>
+              <b>{{product.nama}} {{product.model}}</b><br>
+              {{product.harga | currency: 'Rp.'}}<br>
+              Stok: {{product.stok}}
+            </ion-label>
+          </ion-item>
+        </ion-item-sliding>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

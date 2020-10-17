@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="end">
+      <ion-back-button icon="close" defaultHref="/admin">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit Product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="medium">
+  <ion-item>
+    <ion-label position="floating">Url Foto</ion-label>
+    <ion-input type="text" [(ngModel)]="productEdit['editedImg1']" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Merk Produk</ion-label>
+    <ion-input type="text" [(ngModel)]="productEdit['editedNama']" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Model</ion-label>
+    <ion-input type="text" [(ngModel)]="productEdit['editedModel']" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Harga</ion-label>
+    <ion-input type="number" [(ngModel)]="productEdit['editedHarga']" required>Rp. </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Stok</ion-label>
+    <ion-input type="number" [(ngModel)]="productEdit['editedStok']" required></ion-input>
+  </ion-item>
+
+  <!--Jika model yang dipilih CPU-->
+  <ion-item *ngIf="loadedEditedProduct.produkType === 'CPU' ">
+    <ion-label position="floating">Base Clock (Ghz)</ion-label>
+    <ion-input type="number" [(ngModel)]="productEdit['editedBaseClock']" required></ion-input>
+  </ion-item>
+  <ion-item *ngIf="loadedEditedProduct.produkType === 'CPU' ">
+    <ion-label position="floating">Boost Clock (Ghz)</ion-label>
+    <ion-input type="number" [(ngModel)]="productEdit['editedBoostClock']" required></ion-input>
+  </ion-item>
+  <ion-item *ngIf="loadedEditedProduct.produkType === 'CPU' ">
+    <ion-label position="floating">Core</ion-label>
+    <ion-input type="number" [(ngModel)]="productEdit['editedCore']" required></ion-input>
+  </ion-item>
+  <ion-item *ngIf="loadedEditedProduct.produkType === 'CPU' ">
+    <ion-label position="floating">Thread</ion-label>
+    <ion-input type="number" [(ngModel)]="productEdit['editedThread']" required></ion-input>
+  </ion-item>
+
+  <!--Jika model yang dipilih RAM-->
+  <ion-item *ngIf="loadedEditedProduct.produkType === 'RAM'">
+    <ion-label position="floating">Speed (Mhz)</ion-label>
+    <ion-input type="number" [(ngModel)]="productEdit['editedSpeed']" required></ion-input>
+  </ion-item>
+  <ion-item *ngIf="loadedEditedProduct.produkType === 'RAM'">
+    <ion-label position="floating">Ukuran (GB)</ion-label>
+    <ion-input type="number" [(ngModel)]="productEdit['editedUkuran']" required></ion-input>
+  </ion-item>
+
+  <!--Jika model yang dipilih Motherboard-->
+  <ion-item *ngIf="loadedEditedProduct.produkType === 'Motherboard' ">
+    <ion-label position="floating">Chipset</ion-label>
+    <ion-input type="text" [(ngModel)]="productEdit['editedChipset']" required></ion-input>
+  </ion-item>
+  <ion-item *ngIf="loadedEditedProduct.produkType === 'Motherboard' ">
+    <ion-label position="floating">Processor</ion-label>
+    <ion-input type="text" [(ngModel)]="productEdit['editedProcessor']" required></ion-input>
+  </ion-item>
+
+  <ion-button expand="full"  (click)=confirmEdit()>SAVE</ion-button>
+</ion-content>
